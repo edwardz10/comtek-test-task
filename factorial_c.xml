@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<source_file name="stack.c">
+
+	<identifier name="stack" />
+
+	<function name="main">
+		<section name="default">
+			<identifier name="choice" />
+			<identifier name="option" />
+			<section name="while_0" />
+		</section>
+	</function>
+
+	<function name="push ">
+		<section name="default">
+			<identifier name="num" />
+			<section name="if_0" />
+			<section name="else_0" />
+		</section>
+	</function>
+		
+	<function name="pop ">
+		<section name="default">
+			<identifier name="num" />
+			<section name="if_0" />
+			<section name="else_0" />
+		</section>
+	</function>
+
+	<function name="display ">
+		<section name="default">
+			<identifier name="i" />
+			<section name="if_0" />
+			<section name="else_0">
+				<section name="for_0"/>
+			</section>
+		</section>
+	</function>
+		
+</source_file>
