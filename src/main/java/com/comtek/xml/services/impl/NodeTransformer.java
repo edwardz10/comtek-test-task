@@ -15,7 +15,7 @@ public class NodeTransformer implements Transformer<Node> {
 	@Override
 	public Node transform(Node object) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return object;
 	}
 
 }
