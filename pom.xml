@@ -7,15 +7,20 @@
     <version>1.0-SNAPSHOT</version>
     <name>Comtek XML Parser</name>
 	<groupId>com.comtek</groupId>
-    <artifactId>xml-parser</artifactId>
+	<artifactId>xml-parser</artifactId>
 
-    <dependencies>
-        <dependency>
-            <groupId>google</groupId>
-            <artifactId>guice</artifactId>
-            <version>3.0</version>
-        </dependency>
-    </dependencies>
+	<dependencies>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.11</version>
+		</dependency>
+		<dependency>
+			<groupId>org.mockito</groupId>
+			<artifactId>mockito-all</artifactId>
+			<version>1.10.19</version>
+		</dependency>
+	</dependencies>
 
 	<build>
 		<plugins>

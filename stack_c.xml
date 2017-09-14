@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <source_file name="stack.c">
 
-	<identifier name="stack" />
+	<identifier name="STACK" />
 
 	<function name="main">
 		<section name="default">
@@ -11,7 +11,7 @@
 		</section>
 	</function>
 
-	<function name="push ">
+	<function name="push">
 		<section name="default">
 			<identifier name="num" />
 			<section name="if_0" />
@@ -19,7 +19,7 @@
 		</section>
 	</function>
 		
-	<function name="pop ">
+	<function name="pop">
 		<section name="default">
 			<identifier name="num" />
 			<section name="if_0" />
@@ -27,7 +27,7 @@
 		</section>
 	</function>
 
-	<function name="display ">
+	<function name="display">
 		<section name="default">
 			<identifier name="i" />
 			<section name="if_0" />

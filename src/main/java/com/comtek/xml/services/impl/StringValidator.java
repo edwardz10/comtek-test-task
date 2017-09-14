@@ -33,7 +33,7 @@ public class StringValidator implements Validator<String> {
 	}
 
 	@Override
-	public boolean isValid(String object) {
+	public boolean isValid(String object, boolean transform) {
 		boolean result = true;
 		char c;
 		result = !C_KEYWORDS.contains(object);

@@ -1,66 +1,42 @@
 package com.comtek.xml;
 
-import java.io.File;
-import java.io.StringWriter;
-
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
-import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 
-import com.comtek.xml.services.impl.NodeTransformer;
-import com.comtek.xml.services.impl.NodeValidator;
+import com.comtek.xml.services.impl.ElementTransformer;
+import com.comtek.xml.services.impl.ElementValidator;
 import com.comtek.xml.services.impl.StringTransformer;
 import com.comtek.xml.services.impl.StringValidator;
+import com.comtek.xml.services.util.Utilities;
 
 public class Application {
 
 	private StringValidator stringValidator;
-	private NodeValidator nodeValidator;
+	private ElementValidator elementValidator;
 	private StringTransformer stringTransformer;
-	private NodeTransformer nodeTransformer;
+	private ElementTransformer elementTransformer;
 
 	private Document doc;
 
 	public Application() {
 		stringValidator = new StringValidator();
 		stringTransformer = new StringTransformer();
-		nodeValidator = new NodeValidator();
-		nodeTransformer = new NodeTransformer(stringTransformer);
+		elementTransformer = new ElementTransformer(stringTransformer);
+		elementValidator = new ElementValidator(elementTransformer, stringValidator);
 	}
 
-	protected String validateTransformXml() throws Exception {
+	protected String validateXml(boolean transform) throws Exception {
 		Element topNode = doc.getDocumentElement();
-		
-		if (nodeValidator.isValid(topNode)) {
-			nodeTransformer.transform(topNode);
-		}
-			
-		return documentToString();
+
+		return elementValidator.isValid(topNode, transform)
+				? Utilities.documentToString(doc)
+				: "";
 	}
 
-	protected String documentToString() throws TransformerException {
-		DOMSource domSource = new DOMSource(doc);
-		StringWriter writer = new StringWriter();
-		StreamResult result = new StreamResult(writer);
-		Transformer transformer = TransformerFactory.newInstance().newTransformer();
-		transformer.transform(domSource, result);
-		return writer.toString();
-	}
-	
 	public String loadAndTransformXml(String path) throws Exception {
-		File inputFile = new File(path);
-        DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-        DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-        doc = dBuilder.parse(inputFile);
+        doc = Utilities.filePathToDomDocument(path);
 
-        return validateTransformXml();
+        return validateXml(true);
 	}
 
 	public static void main(String[] args) {
